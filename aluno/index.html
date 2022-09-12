@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alunos</title>
+</head>
+<body>
+    <h1>Alunos</h1>
+    <form id="fAluno" action="#" method="get">
+        <label for="iNome" id="lNome">Nome</label>
+        <input type="text" id="iNome" placeholder="Nome" required>
+        <br>
+        <label for="iNotaI" id="lNotaI">Nota 1</label>
+        <input type="text" id="iNotaI" placeholder="Nota 1" pattern="[0-9]+$" required>
+        <br>
+        <label for="iNotaII" id="lNotaII">Nota 2</label>
+        <input type="text" id="iNotaII" placeholder="Nota 2" pattern="[0-9]+$" required>
+        <br>
+        <label for="iNotaIII" id="lNotaIII">Nota 3</label>
+        <input type="text" id="iNotaIII" placeholder="Nota 3" pattern="[0-9]+$" required>
+        <br>
+        <label for="iMedia" id="lMedia">Média</label>
+        <input type="text" id="iMedia" readonly>
+        <br>
+        <input type="submit" id="bIncluir" value="Incluir">&nbsp;
+        <input type="button" id="bListar" value="Listar">&nbsp;
+        <input type="reset" id="bLimpar" value="Limpar">
+    </form>
+    <p id="pMostra"></p>
+</body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="funcao.js" language="JavaScript"></script>
+    <script language="JavaScript">
+        $("#fAluno").onsubmit = function() {
+            let vmedia = fIncluirAluno($("#iNome").value,
+                                       parseFloat($("#iNotaI").value),
+                                       parseFloat($("#iNotaII").value),
+                                       parseFloat($("#iNotaIII").value));
+            $("#iMedia").value = vmedia;
+            $("#pMostra").innerHTML = "Nro Alunos: "+fContaAlunos();
+        };
+        $("#bListar").onclick = function() {
+            $("#pMostra").innerHTML = fListarAlunos(" | ","<br>")+"Nro Alunos: "+fContaAlunos();
+        }
+        $("#fAluno").onreset = function() {
+            fLimparAlunos();
+        }
+    </script>
+</html>
